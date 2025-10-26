@@ -1,38 +1,27 @@
+// You can change the package name or remove it
 
 public class Main {
     public static void main(String[] args) {
-        // Sample input
-        int[] height = {1,8,6,2,5,4,8,3,7};
+        int[] prices = {7, 1, 5, 3, 6, 4}; // sample input
 
-        // Create Solution object
         Solution sol = new Solution();
-        int result = sol.maxArea(height);
+        int maxProfit = sol.maxProfit(prices);
 
-        // Print result
-        System.out.println("Maximum water: " + result);
+        System.out.println("Maximum Profit: " + maxProfit);
     }
 }
 
 class Solution {
-    public int maxArea(int[] height) {
-        int max = 0;
-        int left = 0;
-        int right = height.length - 1;
+    public int maxProfit(int[] p) {
+        if (p == null || p.length == 0) return 0;
 
-        while(left < right){
-            int h = Math.min(height[left], height[right]);
-            int w = right - left;
-            int area = h * w;
+        int max = 0;         // maximum profit so far
+        int min = p[0];      // minimum buy price so far
 
-            // Update max area
-            max = Math.max(max, area);
-
-            // Move the pointer of smaller height
-            if(height[left] < height[right]){
-                left++;
-            } else {
-                right--;
-            }
+        for (int i = 1; i < p.length; i++) {
+            int profitToday = p[i] - min;       // profit if sell today
+            max = Math.max(max, profitToday);   // update max profit
+            min = Math.min(min, p[i]);          // update min buy price
         }
 
         return max;
