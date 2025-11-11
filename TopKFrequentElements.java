@@ -8,8 +8,8 @@ public class TopKFrequentElements {
         List<Integer>[] val = new List[nums.length + 1];
 
         // Step 1: Count frequencies
-        for (int ch : nums) {
-            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        for (int y : nums) {
+            map.put(y, map.getOrDefault(y, 0) + 1);
         }
 
         System.out.println("Frequency Map: " + map);
